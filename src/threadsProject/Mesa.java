@@ -3,7 +3,7 @@ package threadsProject;
 import java.util.ArrayList;
 
 public class Mesa extends Thread { 
-	private ArrayList<Integer> garfosEmUso = new ArrayList<Integer>();
+	private ArrayList<Integer> garfosDisponiveis = new ArrayList<Integer>();
 
 	private boolean disponivel = false;
 	private boolean pensar = true; 
@@ -17,7 +17,7 @@ public class Mesa extends Thread {
 			} catch (Exception e) {}
 		}
 		
-		if(garfosEmUso.size() < 2) {
+		if(garfosDisponiveis.size() < 2) {
 			disponivel = false;
 			pensar = true;			
 			sleep((int)(Math.random() *1000));
@@ -26,14 +26,14 @@ public class Mesa extends Thread {
 			try {		
 				if(!filosofosEmAcao.contains(cons)) {
 					System.out.println(" ");
-					System.out.println("***Garfos Disponiveis***: " + garfosEmUso.size());
+					System.out.println("***Garfos Disponiveis***: " + garfosDisponiveis.size());
 					System.out.println(" --- " + cons + " está comendo");
 					System.out.println(" ");
 
 					filosofosEmAcao.add(cons);
 					sleep((int)(Math.random() *1000));
-					garfosEmUso.remove(0);
-					garfosEmUso.remove(1);
+					garfosDisponiveis.remove(0);
+					garfosDisponiveis.remove(1);
 				}
 				notifyAll();
 			} catch (Exception e) {
@@ -78,8 +78,8 @@ public class Mesa extends Thread {
 		
 	}
 	
-	public ArrayList<Integer> getGarfosEmUso(){
-		return garfosEmUso;
+	public ArrayList<Integer> getGarfosDisponiveis(){
+		return garfosDisponiveis;
 	}
 	
 	public synchronized void put() { 
@@ -90,12 +90,12 @@ public class Mesa extends Thread {
 			} catch (InterruptedException e) {}
 		}
 		
-		this.garfosEmUso.clear();
-		this.garfosEmUso.add(1);
-		this.garfosEmUso.add(2);
-		this.garfosEmUso.add(3);
-		this.garfosEmUso.add(4);
-		this.garfosEmUso.add(5);
+		this.garfosDisponiveis.clear();
+		this.garfosDisponiveis.add(1);
+		this.garfosDisponiveis.add(2);
+		this.garfosDisponiveis.add(3);
+		this.garfosDisponiveis.add(4);
+		this.garfosDisponiveis.add(5);
 		
 		disponivel = true; 
 		pensar = true;
