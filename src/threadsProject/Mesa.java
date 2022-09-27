@@ -23,7 +23,11 @@ public class Mesa extends Thread {
 			sleep((int)(Math.random() *1000));
 			notifyAll();
 		}else {
-			try {		
+			try {	
+				if(garfosDisponiveis.size() > 5) {
+					garfosDisponiveis.remove(0);
+					garfosDisponiveis.remove(1);
+				}
 				if(!filosofosEmAcao.contains(cons)) {
 					System.out.println(" ");
 					System.out.println("***Garfos Disponiveis***: " + garfosDisponiveis.size());
@@ -64,6 +68,14 @@ public class Mesa extends Thread {
 			filosofosPassados = filosofosPassados + 1;		
 			filosofosEmAcao.add(cons);
 			notifyAll();
+		}else {
+			garfosDisponiveis.add(0);
+			garfosDisponiveis.add(1);
+			System.out.println(" ");
+			System.out.println("***Um filósofo parou de comer e liberour 2 garfos. ***");
+			get(cons, i);
+			filosofosEmAcao.remove(cons);
+			sleep((int)(Math.random() *1000));										
 		}
 				
 		if(filosofosPassados == 3) {
