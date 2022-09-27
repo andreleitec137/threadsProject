@@ -1,6 +1,6 @@
 # Algoritmo dos Filosofos
 
-##Integrantes:
+## Integrantes:
 
-André - *391656011518*;
-Edher - *393522911518*;
+André - * 391656011518 *; <br>
+Edher - * 393522911518 *;
