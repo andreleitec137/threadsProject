@@ -2,15 +2,15 @@ package threadsProject;
 
 public class Main {
 	public static void main(String[] args) {
-		Mesa umEstoque = new Mesa();
-		Garfos umProdut = new Garfos(umEstoque);
-		Filosofo umFilosofo = new Filosofo("Sócrates",umEstoque, false);  
-		Filosofo doisFilosofo = new Filosofo("Aristoteles",umEstoque, false);  
-		Filosofo tresFilosofo = new Filosofo("Euclides",umEstoque, true);  
-		Filosofo quatroFilosofo = new Filosofo("Arquimedes",umEstoque, true);  
-		Filosofo cincoFilosofo = new Filosofo("Nitzche",umEstoque, true);  
+		Mesa novaMesa = new Mesa();
+		Garfos iniciaGarfos = new Garfos(novaMesa);
+		Filosofo umFilosofo = new Filosofo("Sócrates",novaMesa, false);  
+		Filosofo doisFilosofo = new Filosofo("Aristoteles",novaMesa, false);  
+		Filosofo tresFilosofo = new Filosofo("Euclides",novaMesa, true);  
+		Filosofo quatroFilosofo = new Filosofo("Arquimedes",novaMesa, true);  
+		Filosofo cincoFilosofo = new Filosofo("Nitzche",novaMesa, true);  
 
-		umProdut.start();
+		iniciaGarfos.start();
 		umFilosofo.start();
 		doisFilosofo.start();
 		tresFilosofo.start();
