@@ -10,7 +10,7 @@ public class Mesa extends Thread {
 	private int filosofosPassados = 0;
 	private ArrayList<String> filosofosEmAcao = new ArrayList<>();
 	
-	public synchronized void  get(String cons, Integer garfo, boolean pensando) throws InterruptedException {
+	public synchronized void  get(String cons, Integer garfo) throws InterruptedException {
 		while (!disponivel && !pensar){
 			try {
 				wait();				
@@ -24,7 +24,7 @@ public class Mesa extends Thread {
 			notifyAll();
 		}else {
 			try {		
-				if(!pensando && !filosofosEmAcao.contains(cons)) {
+				if(!filosofosEmAcao.contains(cons)) {
 					System.out.println(" ");
 					System.out.println("***Garfos Disponiveis***: " + garfosEmUso.size());
 					System.out.println(" --- " + cons + " está comendo");
@@ -39,16 +39,13 @@ public class Mesa extends Thread {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-
+		}		
 	}
 	
-	public synchronized void pensar(String cons, boolean pensando, int i) throws InterruptedException {
-
+	public synchronized void pensar(String cons, int i) throws InterruptedException {
 
 		if(filosofosEmAcao.size() < 2) {
-			get(cons, i, false);
+			get(cons, i);
 			sleep((int)(Math.random() *100));										
 		}
 		
@@ -63,7 +60,6 @@ public class Mesa extends Thread {
 			System.out.println("***Não há mais garfos disponíveis***");
 			System.out.println(" --- " + cons + " está pensando");
 			System.out.println(" ");
-
 			sleep((int)(Math.random() *1000));
 			filosofosPassados = filosofosPassados + 1;		
 			filosofosEmAcao.add(cons);
@@ -74,12 +70,9 @@ public class Mesa extends Thread {
 			sleep((int)(Math.random() *1000));
 			put();
 			filosofosPassados = 0;
-			filosofosEmAcao.clear();
-			
+			filosofosEmAcao.clear();			
 			System.out.println("");
-
 			System.out.println("******GARFOS LIBERADOS*****");
-
 			notifyAll();
 		}
 		
@@ -108,5 +101,5 @@ public class Mesa extends Thread {
 		pensar = true;
 		
 		notifyAll();
-		}
+	}
 }

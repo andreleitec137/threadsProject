@@ -7,15 +7,10 @@ public class Garfos extends Thread{
 		umaMesa =c;
 	}
 	
-	public void run() {
-			
-			
-			try{
-				umaMesa.put();  
-			} catch (Exception e) {}
-		
-			
-		
+	public void run() {		
+		try{
+			umaMesa.put();  
+		} catch (Exception e) {}		
 	}
 }
 

@@ -3,13 +3,11 @@ package threadsProject;
 public class Filosofo extends Thread {  
 	private String nome;
 	private Mesa umaMesa;
-	private boolean pensando;
 	private boolean test = true;
 	
-	public Filosofo(String n, Mesa c, boolean p) {  
+	public Filosofo(String n, Mesa c) {  
 		nome =n;
 		umaMesa =c;
-		pensando = p;
 	}
 	
 	public void run(){
@@ -25,10 +23,10 @@ public class Filosofo extends Thread {
 			try {
 				
 				if(i >= 3) {
-					umaMesa.pensar(nome, true, i);
+					umaMesa.pensar(nome, i);
 					sleep((int)(Math.random() *100));										
 				}else {
-					umaMesa.get(nome, i, false);
+					umaMesa.get(nome, i);
 					sleep((int)(Math.random() *100));
 				}
 			
