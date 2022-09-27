@@ -71,9 +71,15 @@ public class Mesa extends Thread {
 		}
 				
 		if(filosofosPassados == 3) {
+			sleep((int)(Math.random() *1000));
 			put();
 			filosofosPassados = 0;
 			filosofosEmAcao.clear();
+			
+			System.out.println("");
+
+			System.out.println("******GARFOS LIBERADOS*****");
+
 			notifyAll();
 		}
 		
